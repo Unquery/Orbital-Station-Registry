@@ -1,0 +1,24 @@
+# --- JetBrains / IntelliJ ---
+.idea/
+*.iml
+out/
+
+# --- Maven ---
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.buildNumber.properties
+.mvn/timing.properties
+# If you use the flatten plugin:
+.flattened-pom.xml
+
+# --- Logs ---
+*.log
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
