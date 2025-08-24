@@ -1,4 +1,4 @@
-# Spring-Boot-Test — Spring Boot • H2 • Hibernate • Thymeleaf
+# Orbital-station-registry — Spring Boot • H2 • Hibernate • Thymeleaf
 
 Small CRUD web app using Spring Boot, Hibernate (JPA), **H2** database, and Thymeleaf.
 
