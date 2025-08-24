@@ -1,8 +1,8 @@
-# Project Title — Spring Boot • H2 • Hibernate • Thymeleaf
+# Spring-Boot-Test — Spring Boot • H2 • Hibernate • Thymeleaf
 
 Small CRUD web app using Spring Boot, Hibernate (JPA), **H2** database, and Thymeleaf.
 
-## Run
+## Run 🚀
 
 ```bash
 mvn spring-boot:run
@@ -14,7 +14,7 @@ mvn spring-boot:run
   * JDBC URL: `jdbc:h2:file:./db/Spring_Implementation`
   * User: `sa` (no password)
 --- 
-## H2 config (edit `src/main/resources/application.properties`)
+## H2 config (edit `src/main/resources/application.properties`) ⚙️
 
 ```properties
 # -- H2 in-memory (default) --
@@ -31,7 +31,7 @@ spring.h2.console.path=/h2-console
 
 > If you ever change to another database later, remember to update all `spring.datasource.*` entries (and optionally the Hibernate dialect).
 --- 
-## Maven dep (already in project, for reference)
+## Maven dep (already in project, for reference) 🪶
 
 ```xml
 <dependency>
@@ -41,7 +41,7 @@ spring.h2.console.path=/h2-console
 </dependency>
 ```
 --- 
-## Features 
+## Features ✨
 
 * Spring MVC + Thymeleaf views
 * JPA entities & repositories (Hibernate)
@@ -49,7 +49,7 @@ spring.h2.console.path=/h2-console
 
 --- 
 
-## Diagrams (paste your images)
+## Diagrams 🛠️
 
 * **Diagram analityczny i projektowy** — (Overview of the whole program)
   
