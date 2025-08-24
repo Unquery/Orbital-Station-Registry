@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>System zarządzania statkami kosmicznymi</title>
+    <link
+            th:href="@{'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'}"
+            rel="stylesheet">
+    <style>
+
+        .dark-blue {
+            background-color: #5D84B0;
+            height: 80px;
+        }
+
+        .dark-blue .navbar-item {
+            line-height: 60px;
+        }
+
+        .dark-blue .title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .dark-blue .right-text {
+            color: #fff;
+        }
+
+        .no-stations-card {
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .button-back {
+            border-radius: 50px;
+            width: 90%;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column vh-100">
+
+
+<nav class="navbar dark-blue px-4">
+    <a th:href="@{/missions/new}" class="navbar-item text-decoration-none">
+        <span class="text-white">Wyloguj się</span>
+    </a>
+
+    <span class="navbar-item mx-auto title">
+      System zarządzania statkami kosmicznymi
+    </span>
+
+    <span class="navbar-item right-text">
+      Stworzenie nowej stacji
+    </span>
+</nav>
+
+
+<main class="flex-grow-1 d-flex justify-content-center align-items-center">
+    <div class="card no-stations-card p-4 text-center">
+        <div class="card-body">
+            <h5 class="card-title mb-4">
+                Misja została dodana<br/>
+                do stacji kosmicznych
+            </h5>
+            <a th:href="@{/missions/new}" class="btn btn-success button-back">
+                Dalej
+            </a>
+        </div>
+    </div>
+</main>
+
+
+<footer class="dark-blue" style="height:40px;"></footer>
+
+</body>
+</html>

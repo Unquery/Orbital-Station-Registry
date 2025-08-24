@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Misje stacji kosmicznej</title>
+  <link th:href="@{'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'}" rel="stylesheet"/>
+  <style>
+    .dark-blue { background-color: #5D84B0; height: 80px; }
+    .dark-blue .navbar-item { line-height: 60px; }
+    .dark-blue .title { font-size: 1.75rem; font-weight: bold; color: #fff; }
+    .dark-blue .right-text { color: #fff; }
+    .navbar { height: 60px; display: flex; align-items: center; }
+    .container { padding: 20px 0; }
+    h2 { text-align: center; margin-bottom: 1rem; }
+    .table-simple { background: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 1rem; }
+    .table-simple th, .table-simple td { font-size: 0.9rem; padding: 0.5rem; }
+    .button { border-radius: 50px; width: 100px; }
+    .pagination-sm .page-link { padding: 0.25rem 0.5rem; font-size: 0.85rem; }
+  </style>
+</head>
+<body class="d-flex flex-column vh-100">
+
+<nav class="navbar dark-blue px-4">
+  <a th:href="@{/missions/new}" class="navbar-item text-decoration-none">
+    <span class="text-white">Wyloguj się</span>
+  </a>
+  <span class="navbar-item mx-auto title">
+        System zarządzania statkami kosmicznymi
+    </span>
+  <span class="navbar-item right-text">
+        Misje stacji
+    </span>
+</nav>
+
+<main class="container flex-grow-1">
+  <h2>Misje stacji kosmicznej</h2>
+
+  <div class="table-simple mb-3">
+    <table class="table mb-0">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Kod misji</th>
+        <th>Opis</th>
+        <th>Typ</th>
+        <th>Status</th>
+        <th>Start planowany</th>
+        <th>Koniec planowany</th>
+        <th>Ukończenie %</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="mission : ${missions.content}">
+        <td th:text="${mission.id}">1</td>
+        <td th:text="${mission.missionCode}">MARS-001</td>
+        <td th:text="${mission.description}">Opis misji</td>
+        <td th:text="${mission.type}">RESEARCH</td>
+        <td th:text="${mission.status}">PLANNED</td>
+        <td th:text="${#temporals.format(mission.plannedStartDate,'dd-MM-yyyy HH:mm')}">
+          07-04-2022 13:15
+        </td>
+        <td th:text="${#temporals.format(mission.plannedEndDate,'dd-MM-yyyy HH:mm')}">
+          07-04-2022 13:15
+        </td>
+        <td th:text="${mission.completedPercent + '%'}">0%</td>
+      </tr>
+      <tr th:if="${#lists.isEmpty(missions.content)}">
+        <td colspan="8" class="text-center text-muted">Brak misji dla tej stacji</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex flex-column align-items-center mt-3 flex-wrap">
+
+    <div class="d-flex gap-3">
+      <form th:action="@{/missions/new/check-station-selection}" method="post" class="d-inline">
+        <button type="submit" class="btn btn-success button">Powrót</button>
+      </form>
+
+
+      <form th:action="@{/missions/new/stations/add-to-mission}" method="post" class="d-inline">
+        <input type="hidden" name="stationId" th:value="${station.id}" />
+        <button type="submit" class="btn btn-success button">Zatwierdź</button>
+      </form>
+    </div>
+
+    <ul class="pagination pagination-sm mb-0">
+      <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+        <a class="page-link"
+           th:href="@{/missions/new/station-missions(stationId=${station.id}, page=${currentPage - 1})}">
+          &laquo;
+        </a>
+      </li>
+      <li class="page-item"
+          th:each="i : ${#numbers.sequence(1, totalPages > 10 ? 10 : totalPages)}"
+          th:classappend="${i == currentPage} ? 'active'">
+        <a class="page-link"
+           th:href="@{/missions/new/station-missions(stationId=${station.id}, page=${i})}"
+           th:text="${i}">1</a>
+      </li>
+      <li class="page-item"
+          th:classappend="${currentPage == totalPages} ? 'disabled'">
+        <a class="page-link"
+           th:href="@{/missions/new/station-missions(stationId=${station.id}, page=${currentPage + 1})}">
+          &raquo;
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+</main>
+
+<footer class="dark-blue" style="height:40px;"></footer>
+</body>
+</html>
